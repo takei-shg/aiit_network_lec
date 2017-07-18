@@ -3,6 +3,8 @@
 set -e
 
 sudo yum update -y
+
+# setup bind
 sudo yum -y install bind bind-utils
 
 # set bind files
@@ -12,4 +14,8 @@ sudo chown root:named /etc/named.conf
 sudo cp /vagrant/cfg_files/bind/zones/* /var/named/
 sudo chown root:named /var/named/net06.*
 sudo /etc/init.d/named restart
+
+# setup ntp
+
+sudo yum -y install ntp
 
