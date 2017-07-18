@@ -46,4 +46,5 @@ sudo /etc/rc.d/init.d/saslauthd start
 sudo echo unknown_user: /dev/null >> /etc/aliases
 sudo newaliases
 
+sudo postconf -d > postfix_setting.log
 sudo /etc/rc.d/init.d/postfix restart
