@@ -19,3 +19,12 @@ sudo /etc/init.d/named restart
 
 sudo yum -y install ntp
 
+if [ -e /etc/ntp.conf ]; then
+  sudo cp /etc/ntp.conf /etc/ntp.conf.ori
+fi
+sudo cp /vagrant/cfg_files/ntp/ntp.conf /etc/ntp.conf
+sudo ntpdate ntp.nict.jp
+sudo /etc/rc.d/init.d/ntpd start
+sudo chkconfig ntpd on
+chkconfig --list
+
