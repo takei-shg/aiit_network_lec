@@ -691,4 +691,5 @@ smtpd_recipient_restrictions =
 
 message_size_limit = 10485760
 
-
+local_recipient_maps =
+luser_relay = unknown_user@localhost

@@ -42,3 +42,8 @@ fi
 sudo cp /vagrant/cfg_files/postfix/master.cf /etc/postfix/master.cf
 
 sudo /etc/rc.d/init.d/saslauthd start
+
+sudo echo unknown_user: /dev/null >> /etc/aliases
+sudo newaliases
+
+sudo /etc/rc.d/init.d/postfix restart
