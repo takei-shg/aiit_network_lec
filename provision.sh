@@ -23,8 +23,9 @@ if [ -e /etc/ntp.conf ]; then
   sudo cp /etc/ntp.conf /etc/ntp.conf.ori
 fi
 sudo cp /vagrant/cfg_files/ntp/ntp.conf /etc/ntp.conf
+sudo /etc/init.d/ntpd stop
 sudo ntpdate ntp.nict.jp
-sudo /etc/rc.d/init.d/ntpd start
+sudo /etc/init.d/ntpd start
 sudo chkconfig ntpd on
 chkconfig --list
 
@@ -46,5 +47,6 @@ sudo /etc/rc.d/init.d/saslauthd start
 sudo echo unknown_user: /dev/null >> /etc/aliases
 sudo newaliases
 
-sudo postconf -d > postfix_setting.log
+now=$(date +"%Y%m%d_%H_%M_%S")
+sudo postconf -d > postfix_setting_$now.log
 sudo /etc/rc.d/init.d/postfix restart
