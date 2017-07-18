@@ -7,7 +7,8 @@ $TTL    86400
                    86400         ; negative
                    )
      IN NS      ns1.net06.aiit.ac.jp.
-     IN MX      10 ns1.net06.aiit.ac.jp.
+     IN MX      10 mail.net06.aiit.ac.jp.
      IN A       202.247.58.212
 ns1  IN A       202.247.58.212
 www  IN A       202.247.58.212
+mail IN CNAME   ns1
