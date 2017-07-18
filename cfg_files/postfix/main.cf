@@ -1,3 +1,5 @@
+# ref. https://centossrv.com/postfix.shtml
+
 # Global Postfix configuration file. This file lists only a subset
 # of all parameters. For the syntax, and for a complete parameter
 # list, see the postconf(5) manual page (command: "man 5 postconf").
@@ -74,6 +76,7 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
+myhostname = mail.net06.aiit.ac.jp
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
@@ -81,6 +84,7 @@ mail_owner = postfix
 # parameters.
 #
 #mydomain = domain.tld
+mydomain = net06.aiit.ac.jp
 
 # SENDING MAIL
 #
@@ -97,6 +101,7 @@ mail_owner = postfix
 #
 #myorigin = $myhostname
 #myorigin = $mydomain
+myorigin = $mydomain
 
 # RECEIVING MAIL
 
@@ -113,7 +118,7 @@ mail_owner = postfix
 #inet_interfaces = all
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
-inet_interfaces = localhost
+inet_interfaces = all
 
 # Enable IPv4, and IPv6 if supported
 inet_protocols = all
@@ -161,7 +166,7 @@ inet_protocols = all
 #
 # See also below, section "REJECTING MAIL FOR UNKNOWN LOCAL USERS".
 #
-mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #       mail.$mydomain, www.$mydomain, ftp.$mydomain
@@ -417,6 +422,7 @@ alias_database = hash:/etc/aliases
 #
 #home_mailbox = Mailbox
 #home_mailbox = Maildir/
+home_mailbox = Mailbox
 
 # The mail_spool_directory parameter specifies the directory where
 # UNIX-style mailboxes are kept. The default setting depends on the
@@ -568,6 +574,7 @@ alias_database = hash:/etc/aliases
 #
 #smtpd_banner = $myhostname ESMTP $mail_name
 #smtpd_banner = $myhostname ESMTP $mail_name ($mail_version)
+smtpd_banner = $myhostname ESMTP unknown
 
 # PARALLEL DELIVERY TO THE SAME DESTINATION
 #
@@ -674,4 +681,14 @@ sample_directory = /usr/share/doc/postfix-2.6.6/samples
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = /usr/share/doc/postfix-2.6.6/README_FILES
+
+smtpd_sasl_auth_enable = yes
+
+smtpd_recipient_restrictions =
+    permit_mynetworks
+    permit_sasl_authenticated
+    reject_unauth_destination
+
+message_size_limit = 10485760
+
 

@@ -28,3 +28,17 @@ sudo /etc/rc.d/init.d/ntpd start
 sudo chkconfig ntpd on
 chkconfig --list
 
+# setup postfix
+
+sudo yum -y install postfix cyrus-sasl
+sudo chkconfig saslauthd on
+if [ -e /etc/postfix/main.cf ]; then
+  sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.ori
+fi
+sudo cp /vagrant/cfg_files/postfix/main.cf /etc/postfix/main.cf
+if [ -e /etc/postfix/master.cf ]; then
+  sudo cp /etc/postfix/master.cf /etc/postfix/master.cf.ori
+fi
+sudo cp /vagrant/cfg_files/postfix/master.cf /etc/postfix/master.cf
+
+sudo /etc/rc.d/init.d/saslauthd start
