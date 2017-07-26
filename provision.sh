@@ -23,6 +23,7 @@ sudo cp $WORKDIR/cfg_files/bind/zones/* /var/named/
 sudo chown root:named /var/named/net06.*
 # update root zone
 sudo dig . ns @198.41.0.4 > /var/named/named.ca
+sudo chkconfig named on
 sudo /etc/init.d/named restart
 
 # setup ntp
