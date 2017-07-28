@@ -1,10 +1,9 @@
 #cloud-config
-hostname: "coreos-001"
 passwd:
   users:
    - name: "takei"
      ssh-authorized-keys:
-      - ""
+       - ""
      create:
        home_dir: "/home/takei"
        no_create_home: false
