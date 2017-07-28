@@ -1,0 +1,20 @@
+#cloud-config
+hostname: "coreos-001"
+users:
+ - name: "takei"
+   groups:
+    - "sudo"
+    - "docker"
+   ssh-authorized-keys:
+    - ""
+networkd:
+  units:
+    - name: 00-eth0.network
+      contents:
+        [Match]
+        Name=eth0
+
+        [Network]
+        DNS=192.168.0.2
+        Address=192.168.0.15/24
+        Gateway=192.168.0.1
