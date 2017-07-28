@@ -1,18 +1,21 @@
 #cloud-config
 hostname: "coreos-001"
-users:
- - name: "takei"
-   groups:
-    - "sudo"
-    - "docker"
-   ssh-authorized-keys:
-    - ""
+passwd:
+  users:
+   - name: "takei"
+     ssh-authorized-keys:
+      - ""
+     create:
+       home_dir: "/home/takei"
+       no_create_home: false
+       groups: "wheel"
+       shell: "/bin/zsh"
 networkd:
   units:
-    - name: 00-eth0.network
-      contents:
+    - name: static.network
+      contents: |
         [Match]
-        Name=eth0
+        Name=enp2s0
 
         [Network]
         DNS=192.168.0.2
