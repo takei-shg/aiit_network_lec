@@ -1,0 +1,14 @@
+$TTL    86400
+@    IN SOA    ns1.net06.aiit.ac.jp. root.ns1.net06.aiit.ac.jp. (
+                   2009110402    ; serial
+                   3600          ; refresh
+                   900           ; retry
+                   604800        ; expire
+                   86400         ; negative
+                   )
+     IN NS      ns1.net06.aiit.ac.jp.
+     IN MX      10 mail.net06.aiit.ac.jp.
+     IN A       202.247.58.212
+ns1  IN A       202.247.58.212
+www  IN A       202.247.58.212
+mail IN CNAME   ns1

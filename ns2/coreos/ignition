@@ -1,0 +1,21 @@
+{
+  "ignition": { "version": "2.1.0" },
+  "storage": {
+    "files": [{
+      "filesystem": "root",
+      "path": "/etc/hostname",
+      "mode": 420,
+      "contents": { "source": "data:,NS2" }
+    }]
+  }
+  "passwd": {
+    "users": [
+      {
+        "name": "takei",
+        "sshAuthorizedKeys": [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5BCjFy6W6kZMxmcJXCWwPVSg/Qh7GBiqKAigkP+3F8XssDM+X6U2auTlvQeN7q3kkcJUlDJZeJouZul/9+Yn1HpNy4YYIXMStCCkF4v5V0ez9F2y8a99uUf2atAbMFC/CQtpPveQSWMf3e0urrycYKUwBGF902QRK34A2wxLgn5YDz6V0NQfYbFWS5WngiLRDwWjwMhPJTmgujhnpGhzUoRCOgDK/qtutWojVGo3Im4PZTYaasG6Dn1DyAe3Z74+A/oOWKtk3V++4g/tN80BqkJxutoBBZfLCPmfrumxEWmEt9cwHDuOY5CjxwLcDiTh0zXcIwgOuQ0lUcrbnYW5X stakei@r.aiit.ac.jp"
+        ]
+      }
+    ]
+  }
+}
