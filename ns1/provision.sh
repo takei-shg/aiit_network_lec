@@ -60,3 +60,21 @@ sudo newaliases
 
 sudo postconf -d > postfix_setting_$now.log
 sudo /etc/rc.d/init.d/postfix restart
+
+# setup dovecot
+sudo yum -y install dovecot
+
+sudo cp $WORKDIR/cfg_files/dovecot/dovecot.conf /etc/dovecot/dovecot.conf
+sudo cp $WORKDIR/cfg_files/dovecot/10-auth.conf /etc/dovecot/conf.d/10-auth.conf
+sudo cp $WORKDIR/cfg_files/dovecot/10-mail.conf /etc/dovecot/conf.d/10-mail.conf
+sudo cp $WORKDIR/cfg_files/dovecot/10-master.conf /etc/dovecot/conf.d/10-master.conf
+sudo cp $WORKDIR/cfg_files/dovecot/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf
+
+sudo chkconfig dovecot on
+sudo /etc/rc.d/init.d/dovecot start
+
+# setup dhcp
+yum -y install dhcp
+sudo cp $WORKDIR/cfg_files/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
+sudo /etc/rc.d/init.d/dhcpd start
+
