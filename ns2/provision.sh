@@ -29,13 +29,10 @@ chkconfig --list
 # setup dovecot
 sudo yum -y install dovecot
 
-if [ -e /etc/dovecot/dovecot.conf ]; then
-  sudo cp /etc/dovecot/dovecot.conf /etc/dovecot/dovecot.conf.$now
+if [ -e /etc/dovecot ]; then
+  sudo cp -r /etc/dovecot /etc/dovecot.$now
 fi
-sudo cp $WORKDIR/cfg_files/dovecot/10-auth.conf /etc/dovecot/conf.d/10-auth.conf
-sudo cp $WORKDIR/cfg_files/dovecot/10-mail.conf /etc/dovecot/conf.d/10-mail.conf
-sudo cp $WORKDIR/cfg_files/dovecot/10-master.conf /etc/dovecot/conf.d/10-master.conf
-sudo cp $WORKDIR/cfg_files/dovecot/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf
+sudo cp $WORKDIR/cfg_files/dovecot/* /etc/dovecot/conf.d/
 
 sudo chkconfig dovecot on
 sudo /etc/rc.d/init.d/dovecot start
