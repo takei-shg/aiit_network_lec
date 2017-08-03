@@ -32,7 +32,8 @@ sudo yum -y install dovecot
 if [ -e /etc/dovecot ]; then
   sudo cp -r /etc/dovecot /etc/dovecot.$now
 fi
-sudo cp $WORKDIR/cfg_files/dovecot/* /etc/dovecot/conf.d/
+sudo cp $WORKDIR/cfg_files/dovecot/dovecot.conf /etc/dovecot/dovecot.conf
+sudo cp $WORKDIR/cfg_files/dovecot/conf.d/* /etc/dovecot/conf.d/
 
 sudo chkconfig dovecot on
 sudo /etc/rc.d/init.d/dovecot start
