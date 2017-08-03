@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 now=$(date +"%Y%m%d_%H_%M_%S")
 
