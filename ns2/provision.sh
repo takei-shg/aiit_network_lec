@@ -26,6 +26,27 @@ sudo /etc/init.d/ntpd start
 sudo chkconfig ntpd on
 chkconfig --list
 
+# setup postfix
+
+sudo yum -y install postfix cyrus-sasl
+sudo chkconfig saslauthd on
+if [ -e /etc/postfix/main.cf ]; then
+  sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.$now
+fi
+sudo cp $WORKDIR/cfg_files/postfix/main.cf /etc/postfix/main.cf
+if [ -e /etc/postfix/master.cf ]; then
+  sudo cp /etc/postfix/master.cf /etc/postfix/master.cf.$now
+fi
+sudo cp $WORKDIR/cfg_files/postfix/master.cf /etc/postfix/master.cf
+
+sudo /etc/rc.d/init.d/saslauthd start
+
+sudo echo unknown_user: /dev/null >> /etc/aliases
+sudo newaliases
+
+sudo postconf -d > postfix_setting_$now.log
+sudo /etc/rc.d/init.d/postfix restart
+
 # setup dovecot
 sudo yum -y install dovecot
 
