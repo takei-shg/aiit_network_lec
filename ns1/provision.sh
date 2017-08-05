@@ -53,10 +53,16 @@ if [ -e /etc/postfix/master.cf ]; then
 fi
 sudo cp $WORKDIR/cfg_files/postfix/master.cf /etc/postfix/master.cf
 
+if [ -e /etc/postfix/transport ]; then
+  sudo cp /etc/postfix/transport /etc/postfix/transport.$now
+fi
+sudo cp $WORKDIR/cfg_files/postfix/transport /etc/postfix/transport
+
 sudo /etc/rc.d/init.d/saslauthd start
 
 sudo echo unknown_user: /dev/null >> /etc/aliases
 sudo newaliases
 
 sudo postconf -d > postfix_setting_$now.log
+postmap hash:/etc/postfix/transport
 sudo /etc/rc.d/init.d/postfix restart
