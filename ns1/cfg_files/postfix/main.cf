@@ -315,11 +315,13 @@ unknown_local_recipient_reject_code = 550
 #
 # If you're connected via UUCP, see also the default_transport parameter.
 #
-#relayhost = $mydomain
+relayhost = mail.net06.aiit.ac.jp
 #relayhost = [gateway.my.domain]
 #relayhost = [mailserver.isp.tld]
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
+
+
 
 # REJECTING UNKNOWN RELAY USERS
 #
@@ -370,6 +372,7 @@ unknown_local_recipient_reject_code = 550
 # TRANSPORT MAP
 #
 # See the discussion in the ADDRESS_REWRITING_README document.
+transport_maps = hash:/etc/postfix/transport
 
 # ALIAS DATABASE
 #
